@@ -15,7 +15,7 @@ export async function getUser(req, res) {
   try {
     console.log(filterName);
     const [result] = await pool.query(
-      "SELECT * FROM USERS WHERE USER_NAME LIKE ? ",
+      "SELECT * FROM users WHERE USER_NAME LIKE ? ",
       filterName
     );
     res.json(result);
@@ -38,7 +38,7 @@ export async function updateUser(req, res) {
   const { name, job } = req.body;
   try {
     const [result] = await pool.query(
-      "UPDATE USERS SET USER_NAME = ?, USER_JOB =? WHERE USER_ID= ?",
+      "UPDATE users SET USER_NAME = ?, USER_JOB =? WHERE USER_ID= ?",
       [name, job, id]
     );
     res.json(result);
@@ -49,7 +49,7 @@ export async function newUser(req, res) {
   const { name, job } = req.body;
   try {
     const [result] = await pool.query(
-      "INSERT INTO USERS (USER_NAME, USER_JOB) VALUES(?, ?)",
+      "INSERT INTO users (USER_NAME, USER_JOB) VALUES(?, ?)",
       [name, job]
     );
     res.json(result);
